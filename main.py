@@ -1,15 +1,11 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from transformers import AutoTokenizer, AutoModel
-import torch
+import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
 app = FastAPI()
 
-print("Loading model...")
-tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/paraphrase-MiniLM-L3-v2")
-model = AutoModel.from_pretrained("sentence-transformers/paraphrase-MiniLM-L3-v2")
-print("Model loaded.")
+print("Loading lightweight model...")
 
 # Classe de la requête
 class JobTitle(BaseModel):
@@ -37,20 +33,28 @@ SOFT_SKILLS = [
     "swift", "go", "kotlin", "html", "css", "sql", "bash"
 ]
 
-# Embedding helper
-def get_embedding(text):
-    inputs = tokenizer(text, return_tensors="pt", padding=True, truncation=True)
-    with torch.no_grad():
-        outputs = model(**inputs)
-    return outputs.last_hidden_state.mean(dim=1).numpy()
+# === Simulation d'embeddings légers ===
+
+# Dictionnaire statique simulant des vecteurs pour chaque soft skill
+np.random.seed(42)
+EMBEDDINGS = {skill: np.random.rand(10) for skill in SOFT_SKILLS}
+
+# Fonction simulée de génération d'embedding pour un titre de poste
+def get_fake_embedding(text: str) -> np.ndarray:
+    # Hash simple basé sur le texte
+    seed = sum(ord(c) for c in text.lower()) % 10000
+    rng = np.random.default_rng(seed)
+    return rng.random(10)
 
 # Fonction principale de recommandation
 def recommend_soft_skills(job_title, top_k=5):
-    job_emb = get_embedding(job_title)
-    skill_embs = [get_embedding(skill) for skill in SOFT_SKILLS]
-    scores = [cosine_similarity(job_emb, s_emb)[0][0] for s_emb in skill_embs]
-    sorted_skills = sorted(zip(SOFT_SKILLS, scores), key=lambda x: x[1], reverse=True)
-    return [skill for skill, score in sorted_skills[:top_k]]
+    job_emb = get_fake_embedding(job_title)
+    similarities = {
+        skill: cosine_similarity([job_emb], [vec])[0][0]
+        for skill, vec in EMBEDDINGS.items()
+    }
+    sorted_skills = sorted(similarities.items(), key=lambda x: x[1], reverse=True)
+    return [skill for skill, _ in sorted_skills[:top_k]]
 
 # Endpoint API
 @app.post("/recommend")
