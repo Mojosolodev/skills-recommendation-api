@@ -15,22 +15,19 @@ class JobTitle(BaseModel):
 SOFT_SKILLS = [
     # Soft skills
     "communication", "teamwork", "creativity", "problem solving", "adaptability",
-    "time management", "leadership", "empathy", "critical thinking", "attention to detail",
+    "time management", "leadership", "empathy", "critical thinking",
     "public speaking", "decision making", "negotiation", "collaboration", "patience",
-    "multitasking", "persuasion", "self-motivation", "organization", "open-mindedness",
-    "integrity", "active listening", "planning", "delegation", "independence",
-    "customer focus", "confidence", "storytelling", "goal setting", "stress management",
-    "strategic thinking", "emotional intelligence", "resourcefulness", "initiative",
-    "flexibility", "analytical reasoning", "instructional skills", "mentoring",
-    "coaching", "data literacy", "presentation skills", "networking", "research skills",
+    "persuasive","integrity", "planning","confidence","storytelling","stress management",
+    "strategic thinking", "emotional intelligence","initiative","flexible",
+    "flexibility", "analysis","mentoring",
+    "coaching","presentation skills", "networking", "research skills",
 
     # Human languages
-    "english", "french", "spanish", "german", "arabic", "chinese", "russian",
-    "portuguese", "italian", "japanese", "korean", "dutch", "swedish", "polish",
+    "english", "french", "spanish","chinese","italian", "japanese", "korean"
 
     # Programming languages
     "python", "javascript", "java", "c++", "c#", "typescript", "php", "ruby",
-    "swift", "go", "kotlin", "html", "css", "sql", "bash"
+    "swift", "go", "kotlin", "html", "css", "sql", "bash","react native"
 ]
 
 # === Simulation d'embeddings légers ===
