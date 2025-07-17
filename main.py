@@ -7,8 +7,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 app = FastAPI()
 
 print("Loading model...")
-tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
-model = AutoModel.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
+tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/paraphrase-MiniLM-L3-v2")
+model = AutoModel.from_pretrained("sentence-transformers/paraphrase-MiniLM-L3-v2")
 print("Model loaded.")
 
 # Classe de la requête
