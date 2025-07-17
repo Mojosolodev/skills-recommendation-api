@@ -19,15 +19,15 @@ SOFT_SKILLS = [
     "public speaking", "decision making", "negotiation", "collaboration", "patience",
     "persuasive","integrity", "planning","confidence","storytelling","stress management",
     "strategic thinking", "emotional intelligence","initiative","flexible",
-    "flexibility", "analysis","mentoring",
+    "flexibility", "analysis","mentoring","marketing"
     "coaching","presentation skills", "networking", "research skills",
 
     # Human languages
-    "english", "french", "spanish","chinese","italian", "japanese", "korean"
+    "english", "french", "spanish","chinese"
 
     # Programming languages
     "python", "javascript", "java", "c++", "c#", "typescript", "php", "ruby",
-    "swift", "go", "kotlin", "html", "css", "sql", "bash","react native"
+    "swift", "kotlin", "html", "css", "sql", "bash","react native"
 ]
 
 # === Simulation d'embeddings légers ===
